@@ -1,7 +1,7 @@
 import os
 import shutil
 from convert_txt_file import create_folder
-def rename_image_files(base_image_path):
+def rename_image_files(base_image_path: str)-> None:
   for mvi in os.listdir(base_image_path):
     index = 0
     paths = os.path.join(base_image_path,mvi)
@@ -15,7 +15,7 @@ def rename_image_files(base_image_path):
       else:
         print(f"The file does not exist.")
 
-def merge_folders(source_dir, target_dir):
+def merge_folders(source_dir: str, target_dir: str)->None:
     for item in os.listdir(source_dir):
         source_item = os.path.join(source_dir, item)
         target_item = os.path.join(target_dir, item)
@@ -30,15 +30,16 @@ def merge_folders(source_dir, target_dir):
                 print(f"Created directory {target_item}")
             merge_folders(source_item, target_item)
 
-def merge_all_folders(source_dir,target_dir):
+def merge_all_folders(source_dir:str ,target_dir:str)->None:
   for mvi in os.listdir(source_dir):
     mvi_path = os.path.join(source_dir, mvi)
     merge_folders(mvi_path, target_dir)
 if __name__ == "__main__":
+    #path of train and test images.
     train_images_path = './Train_images'
     test_images_path = './Test_images'
     
-    #create train images paths to merge dataset
+    #create train images paths to merge dataset.
     create_folder(train_images_path)
     create_folder(test_images_path)
 
