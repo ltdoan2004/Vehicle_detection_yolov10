@@ -1,0 +1,11 @@
+path:  # dataset root dir
+train: ./Train_images # train images (relative to 'path') 128 images
+val: ./Test_images # val images (relative to 'path') 128 images
+test: (optional)
+
+
+names:
+    0: 'bus'
+    1: 'van'
+    2: 'car'
+    3: 'others'
