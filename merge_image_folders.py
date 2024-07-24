@@ -6,11 +6,13 @@ def rename_image_files(base_image_path: str)-> None:
     index = 0
     paths = os.path.join(base_image_path,mvi)
     for image in os.listdir(paths):
+      print(image)
       index = index + 1
       image_path = os.path.join(paths, image)
       if os.path.exists(image_path):
-        new_file_name =os.path.join(paths, mvi + "_" + str(index) + ".jpg")
+        new_file_name =os.path.join(paths, mvi + "_" + image)
         os.rename(image_path, new_file_name)
+        print(image_path)
         print(f"File renamed to {new_file_name}")
       else:
         print(f"The file does not exist.")
@@ -36,15 +38,15 @@ def merge_all_folders(source_dir:str ,target_dir:str)->None:
     merge_folders(mvi_path, target_dir)
 if __name__ == "__main__":
     #path of train and test images.
-    train_images_path = './Train_images'
-    test_images_path = './Test_images'
+    train_images_path = '/Users/doa_ai/Developer/Vehicle_detection_yolov10/dataroot/train/images'
+    test_images_path = '/Users/doa_ai/Developer/Vehicle_detection_yolov10/dataroot/val/images'
     
     #create train images paths to merge dataset.
-    create_folder(train_images_path)
-    create_folder(test_images_path)
+    # create_folder(train_images_path)
+    # create_folder(test_images_path)
 
-    old_train_image_path = "./Insight-MVT_Annotation_Train"
     old_test_image_path = "./Insight-MVT_Annotation_Test"
+    old_train_image_path = "./Insight-MVT_Annotation_Train"
     rename_image_files(old_train_image_path)
     rename_image_files(old_test_image_path)
 

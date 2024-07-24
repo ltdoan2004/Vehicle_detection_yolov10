@@ -14,7 +14,8 @@ def transform_yolo_format(elements, class_to_id: dict, path_of_dict: str) -> Non
       for element in elements:
         if element.tag == "frame":
           #create name with name of mvi and their index.
-          name = name_of_MVI + "_" + element.attrib['num']
+          name = name_of_MVI + "_" + 'img' + '{:05d}'.format(int(element.attrib['num'])) 
+          print(name)
           #open file txt.
           f = open(os.path.join(path_of_dict,name)+".txt", "a")
 
@@ -63,10 +64,10 @@ def transform_format(annotations_set, annotations_path):
             print(f"Skipping non-XML file: {file}")
 
 if __name__ == "__main__":
-    train_annotations_path = './train_annotations'
-    test_annotations_path = './test_annotations'
-    create_folder(train_annotations_path)
-    create_folder(test_annotations_path)
+    train_annotations_path = '/Users/doa_ai/Developer/Vehicle_detection_yolov10/dataroot/train/labels'
+    test_annotations_path = '/Users/doa_ai/Developer/Vehicle_detection_yolov10/dataroot/val/labels'
+    # create_folder(train_annotations_path)
+    # create_folder(test_annotations_path)
 
     transform_format(annotations_set="./TrainSet", annotations_path=train_annotations_path)
     transform_format(annotations_set="./TestSet", annotations_path=test_annotations_path)
